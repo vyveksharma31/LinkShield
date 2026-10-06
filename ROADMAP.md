@@ -11,8 +11,8 @@
 | Phase | Title | Status | Description |
 |---|---|---|---|
 | **Phase 0** | Project Foundation & Hygiene | 🟢 Completed | Environment audit, Git remote verification, core docs, 5-item root enforcement. |
-| **Phase 1** | Architecture & Specifications | 🟡 In Progress | Modular subsystem contracts, data schemas, ML pipeline design, security perimeter. |
-| **Phase 2** | Backend Foundation | ⚪ Pending | FastAPI setup, API versioning, health endpoints, logging, error handling. |
+| **Phase 1** | Architecture & Specifications | 🟢 Completed | Modular subsystem contracts, data schemas, 30-feature matrix, hybrid risk formula. |
+| **Phase 2** | Backend Foundation | 🟡 In Progress | FastAPI setup, API versioning, health endpoints, logging, error handling. |
 | **Phase 3** | URL Analysis & Normalization Engine | ⚪ Pending | Safe parsing, punycode decoding, lexical feature extraction (30+ metrics). |
 | **Phase 4** | Security Threat Heuristics | ⚪ Pending | Brand impersonation, IP host detection, entropy, suspicious TLD rules. |
 | **Phase 5** | Dataset & ML Pipeline | ⚪ Pending | Curated dataset, reproducible train/eval script, model serialization. |
@@ -43,16 +43,16 @@
 - [x] Scaffold initial `backend/` and `frontend/` directory structures.
 
 ### Phase 1: Architecture & Specifications
-- [ ] Define comprehensive REST API schemas (`AnalyzeRequest`, `AnalysisResult`, `Indicator`, `FeatureMetrics`).
-- [ ] Formalize URL parsing and normalization pipeline rules.
-- [ ] Specify feature extraction matrix (30+ lexical, structural, and information-theoretic features).
-- [ ] Define the Hybrid Risk Scoring mathematical formulation.
-- [ ] Document explainability rule mapping and threat severity tiers.
-- [ ] Update `BRAIN.md` with final architecture specifications.
+- [x] Define comprehensive REST API schemas (`AnalyzeRequest`, `AnalysisResult`, `Indicator`, `FeatureMetrics`).
+- [x] Formalize URL parsing and normalization pipeline rules.
+- [x] Specify feature extraction matrix (30 lexical, structural, and information-theoretic features).
+- [x] Define the Hybrid Risk Scoring mathematical formulation.
+- [x] Document explainability rule mapping and threat severity tiers.
+- [x] Update `BRAIN.md` with final architecture specifications.
 
 ### Phase 2: Backend Foundation
 - [ ] Configure `backend/requirements.txt` with minimal, pinned dependencies.
-- [ ] Set up `backend/.gitignore` and `backend/.env.example`.
+- [ ] Set up `backend/.env.example`.
 - [ ] Implement FastAPI application factory in `backend/app/main.py`.
 - [ ] Implement CORS middleware, structured JSON logging, and global exception handlers.
 - [ ] Implement versioned API routing (`/api/v1/health`, `/api/v1/analyze` scaffold).
