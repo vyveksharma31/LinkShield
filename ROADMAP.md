@@ -12,8 +12,8 @@
 |---|---|---|---|
 | **Phase 0** | Project Foundation & Hygiene | 🟢 Completed | Environment audit, Git remote verification, core docs, 5-item root enforcement. |
 | **Phase 1** | Architecture & Specifications | 🟢 Completed | Modular subsystem contracts, data schemas, 30-feature matrix, hybrid risk formula. |
-| **Phase 2** | Backend Foundation | 🟢 Completed | FastAPI app, versioned routing, Pydantic schemas, logging, tests passing. |
-| **Phase 3** | URL Analysis & Normalization Engine | 🟡 In Progress | Safe parsing, punycode decoding, lexical feature extraction (30+ metrics). |
+| **Phase 2** | Backend Foundation | 🟢 Completed | FastAPI app, versioned routing, Pydantic schemas, logging, tests passing (100%). |
+| **Phase 3** | URL Analysis & Normalization Engine | 🟡 Up Next | Safe parsing, punycode decoding, lexical feature extraction (30+ metrics). |
 | **Phase 4** | Security Threat Heuristics | ⚪ Pending | Brand impersonation, IP host detection, entropy, suspicious TLD rules. |
 | **Phase 5** | Dataset & ML Pipeline | ⚪ Pending | Curated dataset, reproducible train/eval script, model serialization. |
 | **Phase 6** | Composite Risk Scoring Engine | ⚪ Pending | Multi-signal weighted risk formula (0–100 scale), confidence calibration. |
@@ -56,18 +56,15 @@
 - [x] Implement FastAPI application factory in `backend/app/main.py`.
 - [x] Implement CORS middleware, structured logging, and global exception handlers.
 - [x] Implement schemas in `backend/app/schemas/` (`request.py`, `response.py`).
-- [x] Implement versioned API routing (`/api/v1/health`, `/api/v1/analyze` scaffold).
-- [x] Write initial Pytest test suite for health and root endpoints (100% passing).
+- [x] Implement versioned API routing (`/api/v1/health`, `/api/v1/analyze`).
+- [x] Implement initial engine coordinator and safe parser scaffold.
+- [x] Write Pytest test suite for health, root, and analyze endpoints (6/6 tests passing, 0 warnings).
 
 ### Phase 3: URL Analysis & Normalization Engine
-- [ ] Build safe URL validator and parser (`backend/app/engine/parser.py`).
-- [ ] Implement normalization (scheme defaulting, case folding, Punycode/IDN resolution).
-- [ ] Build feature extractor (`backend/app/engine/features.py`) computing 30+ metrics:
-  - URL length, hostname length, path length, query length.
-  - Dot counts, hyphen counts, slash counts, digit ratios.
-  - Shannon entropy of hostname, path, and full URL.
-  - Subdomain depth, suspicious token frequency.
-- [ ] Unit test parser and feature extractor with 50+ diverse URLs.
+- [ ] Refine safe URL validator and parser (`backend/app/engine/parser.py`).
+- [ ] Validate comprehensive Punycode/IDN homoglyph resolution.
+- [ ] Expand feature extraction tests (`backend/app/engine/features.py`) with 50+ edge-case URLs.
+- [ ] Add dedicated unit tests for Shannon entropy algorithms.
 
 ### Phase 4: Security Threat Heuristics
 - [ ] Build rule-based indicator engine (`backend/app/engine/heuristics.py`).
