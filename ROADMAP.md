@@ -13,12 +13,12 @@
 | **Phase 0** | Project Foundation & Hygiene | 🟢 Completed | Environment audit, Git remote verification, core docs, 5-item root enforcement. |
 | **Phase 1** | Architecture & Specifications | 🟢 Completed | Modular subsystem contracts, data schemas, 30-feature matrix, hybrid risk formula. |
 | **Phase 2** | Backend Foundation | 🟢 Completed | FastAPI app, versioned routing, Pydantic schemas, logging, tests passing (100%). |
-| **Phase 3** | URL Analysis & Normalization Engine | 🟡 Up Next | Safe parsing, punycode decoding, lexical feature extraction (30+ metrics). |
-| **Phase 4** | Security Threat Heuristics | ⚪ Pending | Brand impersonation, IP host detection, entropy, suspicious TLD rules. |
-| **Phase 5** | Dataset & ML Pipeline | ⚪ Pending | Curated dataset, reproducible train/eval script, model serialization. |
-| **Phase 6** | Composite Risk Scoring Engine | ⚪ Pending | Multi-signal weighted risk formula (0–100 scale), confidence calibration. |
-| **Phase 7** | Explainability & Recommendation Engine | ⚪ Pending | Structured evidence generation, positive/negative indicators, defense guidance. |
-| **Phase 8** | Frontend Cyber Dashboard | ⚪ Pending | React + Vite + TypeScript, cyber design tokens, risk gauge, analysis UI. |
+| **Phase 3** | URL Analysis & Normalization Engine | 🟢 Completed | Safe parsing, punycode decoding, lexical feature extraction (30 metrics). |
+| **Phase 4** | Security Threat Heuristics | 🟢 Completed | Brand impersonation, IP host detection, entropy, suspicious TLD rules. |
+| **Phase 5** | Dataset & ML Pipeline | 🟢 Completed | Curated dataset, reproducible train/eval script, model serialization. |
+| **Phase 6** | Composite Risk Scoring Engine | 🟢 Completed | Multi-signal weighted risk formula (0–100 scale), confidence calibration. |
+| **Phase 7** | Explainability & Recommendation Engine | 🟢 Completed | Structured evidence generation, positive/negative indicators, defense guidance. |
+| **Phase 8** | Frontend Cyber Dashboard | 🟡 Up Next | React + Vite + TypeScript, cyber design tokens, risk gauge, analysis UI. |
 | **Phase 9** | Frontend & Backend Integration | ⚪ Pending | Live API client integration, state management, end-to-end verification. |
 | **Phase 10** | Security Hardening & Edge Cases | ⚪ Pending | Input validation, anti-SSRF static checks, CORS, oversized request protection. |
 | **Phase 11** | Comprehensive Automated Testing | ⚪ Pending | Pytest unit/integration tests, edge cases (IDN homoglyphs, malformed input). |
@@ -61,39 +61,40 @@
 - [x] Write Pytest test suite for health, root, and analyze endpoints (6/6 tests passing, 0 warnings).
 
 ### Phase 3: URL Analysis & Normalization Engine
-- [ ] Refine safe URL validator and parser (`backend/app/engine/parser.py`).
-- [ ] Validate comprehensive Punycode/IDN homoglyph resolution.
-- [ ] Expand feature extraction tests (`backend/app/engine/features.py`) with 50+ edge-case URLs.
-- [ ] Add dedicated unit tests for Shannon entropy algorithms.
+- [x] Refine safe URL validator and parser (`backend/app/engine/parser.py`).
+- [x] Validate comprehensive Punycode/IDN homoglyph resolution.
+- [x] Expand feature extraction tests (`backend/app/engine/features.py`) with 50+ edge-case URLs.
+- [x] Add dedicated unit tests for Shannon entropy algorithms.
 
 ### Phase 4: Security Threat Heuristics
-- [ ] Build rule-based indicator engine (`backend/app/engine/heuristics.py`).
-- [ ] Implement IP-address host detection (IPv4 literals, hex/octal representations).
-- [ ] Implement brand impersonation detection (targeted high-value brand names in subdomains/paths).
-- [ ] Implement suspicious TLD lookup (known high-abuse free/cheap TLDs).
-- [ ] Implement URL shortener service identification.
-- [ ] Implement encoding anomaly detection (excessive `%` hex escapes).
+- [x] Build rule-based indicator engine (`backend/app/engine/heuristics.py`).
+- [x] Implement IP-address host detection (IPv4 literals, hex/octal representations).
+- [x] Implement brand impersonation detection (targeted high-value brand names in subdomains/paths).
+- [x] Implement suspicious TLD lookup (known high-abuse free/cheap TLDs).
+- [x] Implement URL shortener service identification.
+- [x] Implement encoding anomaly detection (excessive `%` hex escapes).
 
 ### Phase 5: Dataset & ML Pipeline
-- [ ] Curate balanced, clean benchmark dataset of legitimate and phishing URLs.
-- [ ] Build reproducible training script (`backend/scripts/train.py`).
-- [ ] Train and evaluate candidate models (Random Forest, Logistic Regression).
-- [ ] Document metrics (Precision, Recall, F1-Score, False Positive Rate, ROC-AUC).
-- [ ] Serialize trained model artifact to `backend/models/`.
-- [ ] Implement lightweight inference loader (`backend/app/ml/model_loader.py`).
+- [x] Curate balanced, clean benchmark dataset of legitimate and phishing URLs.
+- [x] Build reproducible training script (`backend/scripts/train.py`).
+- [x] Train and evaluate candidate models (Random Forest, Logistic Regression).
+- [x] Document metrics (Precision, Recall, F1-Score, False Positive Rate, ROC-AUC).
+- [x] Serialize trained model artifact to `backend/models/`.
+- [x] Implement lightweight inference loader (`backend/app/ml/model_loader.py`).
 
 ### Phase 6: Composite Risk Scoring Engine
-- [ ] Build risk scoring engine (`backend/app/engine/risk_scorer.py`).
-- [ ] Integrate ML prediction probability with heuristic threat weights.
-- [ ] Implement critical indicator overrides (guaranteed high floor for egregious flags).
-- [ ] Categorize into `LEGITIMATE` (0–25), `SUSPICIOUS` (26–60), and `PHISHING` (61–100).
-- [ ] Calibrate overall confidence metrics.
+- [x] Build risk scoring engine (`backend/app/engine/risk_scorer.py`).
+- [x] Integrate ML prediction probability with heuristic threat weights.
+- [x] Implement critical indicator overrides (guaranteed high floor for egregious flags).
+- [x] Categorize into `LEGITIMATE` (0–25), `SUSPICIOUS` (26–60), and `PHISHING` (61–100).
+- [x] Calibrate overall confidence metrics.
 
 ### Phase 7: Explainability & Recommendation Engine
-- [ ] Build explainability generator (`backend/app/engine/explainer.py`).
-- [ ] Group findings into high-risk indicators and positive security indicators.
-- [ ] Generate context-aware recommendations for end users and analysts.
-- [ ] Ensure all explanations are grounded in verified evidence.
+- [x] Build explainability generator (`backend/app/engine/explainer.py`).
+- [x] Group findings into high-risk indicators and positive security indicators.
+- [x] Generate context-aware recommendations for end users and analysts.
+- [x] Ensure all explanations are grounded in verified evidence.
+
 
 ### Phase 8: Frontend Cyber Dashboard
 - [ ] Initialize React + Vite + TypeScript project inside `frontend/`.

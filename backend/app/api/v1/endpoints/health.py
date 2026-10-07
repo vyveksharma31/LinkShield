@@ -10,12 +10,11 @@ router = APIRouter()
 @router.get("/health", response_model=HealthResponse, summary="API Health Check")
 async def health_check() -> HealthResponse:
     """Return backend operational status, version, and model readiness."""
-    # Check if model is initialized (we will import the loader check once implemented)
     model_loaded = False
     try:
-        from backend.app.ml.model_loader import model_loader
-        model_loaded = model_loader.is_loaded()
-    except (ImportError, Exception):
+        from backend.app.ml.model_loader import get_model_loader
+        model_loaded = get_model_loader().is_loaded
+    except Exception:
         model_loaded = False
 
     return HealthResponse(

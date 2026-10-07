@@ -19,6 +19,8 @@ junit/
 # Model and Data caches
 *.joblib
 *.pkl
+!models/*.joblib
+!models/*.json
 !models/.gitkeep
 
 # Environment variables

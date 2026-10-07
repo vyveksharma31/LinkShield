@@ -1,0 +1,59 @@
+{
+  "model_version": "rf-v1.0",
+  "algorithm": "RandomForestClassifier",
+  "n_estimators": 100,
+  "max_depth": 12,
+  "features": [
+    "url_length",
+    "hostname_length",
+    "path_length",
+    "query_length",
+    "num_path_segments",
+    "num_query_params",
+    "tld_length",
+    "subdomain_depth",
+    "count_dots",
+    "count_hyphens",
+    "count_underscores",
+    "count_slashes",
+    "count_question",
+    "count_equals",
+    "count_at",
+    "count_percent",
+    "count_digits",
+    "digit_ratio",
+    "entropy_url",
+    "entropy_hostname",
+    "entropy_path",
+    "count_suspicious_keywords",
+    "has_brand_in_subdomain",
+    "has_brand_in_path",
+    "is_shortened_url",
+    "has_hex_encoded_char",
+    "is_ip_address",
+    "is_https",
+    "has_non_standard_port",
+    "is_punycode"
+  ],
+  "num_features": 30,
+  "metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0,
+    "false_positive_rate": 0.0,
+    "confusion_matrix": [
+      [
+        20,
+        0
+      ],
+      [
+        0,
+        19
+      ]
+    ]
+  },
+  "trained_at": "2026-10-06T14:45:17.447080+00:00",
+  "total_samples": 156
+}
