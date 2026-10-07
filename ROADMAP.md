@@ -18,10 +18,10 @@
 | **Phase 5** | Dataset & ML Pipeline | 🟢 Completed | Curated dataset, reproducible train/eval script, model serialization. |
 | **Phase 6** | Composite Risk Scoring Engine | 🟢 Completed | Multi-signal weighted risk formula (0–100 scale), confidence calibration. |
 | **Phase 7** | Explainability & Recommendation Engine | 🟢 Completed | Structured evidence generation, positive/negative indicators, defense guidance. |
-| **Phase 8** | Frontend Cyber Dashboard | 🟡 Up Next | React + Vite + TypeScript, cyber design tokens, risk gauge, analysis UI. |
-| **Phase 9** | Frontend & Backend Integration | ⚪ Pending | Live API client integration, state management, end-to-end verification. |
-| **Phase 10** | Security Hardening & Edge Cases | ⚪ Pending | Input validation, anti-SSRF static checks, CORS, oversized request protection. |
-| **Phase 11** | Comprehensive Automated Testing | ⚪ Pending | Pytest unit/integration tests, edge cases (IDN homoglyphs, malformed input). |
+| **Phase 8** | Frontend Cyber Dashboard | 🟢 Completed | React + Vite + TypeScript, cyber design tokens, risk gauge, analysis UI. |
+| **Phase 9** | Frontend & Backend Integration | 🟢 Completed | Live API client integration, state management, end-to-end verification. |
+| **Phase 10** | Security Hardening & Edge Cases | 🟢 Completed | Input validation, anti-SSRF static checks, CORS, oversized request protection. |
+| **Phase 11** | Comprehensive Automated Testing | 🟡 Up Next | Pytest unit/integration tests, edge cases (IDN homoglyphs, malformed input). |
 | **Phase 12** | Performance & Latency Optimization | ⚪ Pending | Sub-15ms feature extraction, efficient ML loading, asset compression. |
 | **Phase 13** | Documentation & Showcase Artifacts | ⚪ Pending | OpenAPI docs, detailed architecture diagrams, sample analysis reports. |
 | **Phase 14** | Final Quality Assurance | ⚪ Pending | End-to-end operational verification, zero-warning build check. |
@@ -95,31 +95,30 @@
 - [x] Generate context-aware recommendations for end users and analysts.
 - [x] Ensure all explanations are grounded in verified evidence.
 
-
 ### Phase 8: Frontend Cyber Dashboard
-- [ ] Initialize React + Vite + TypeScript project inside `frontend/`.
-- [ ] Set up `frontend/.gitignore` and `frontend/.env.example`.
-- [ ] Design custom cyber dark theme design system (`frontend/src/styles/`).
-- [ ] Build key components:
-  - Header & Status Bar
-  - URL Submission Form with quick sample test buttons
-  - Risk Gauge & Classification Verdict Card
-  - Explanations & Threat Indicators List
-  - Extracted URL Features Inspection Grid
-  - Recent Analysis History Drawer
-- [ ] Validate responsive layout and accessibility.
+- [x] Initialize React + Vite + TypeScript project inside `frontend/`.
+- [x] Set up `frontend/.gitignore` and `frontend/.env.example`.
+- [x] Design custom cyber dark theme design system (`frontend/src/styles/`).
+- [x] Build key components:
+  - [x] Header & Status Bar
+  - [x] URL Submission Form with quick sample test buttons
+  - [x] Risk Gauge & Classification Verdict Card
+  - [x] Explanations & Threat Indicators List
+  - [x] Extracted URL Features Inspection Grid
+  - [x] Recent Analysis History Drawer
+- [x] Validate responsive layout and accessibility.
 
 ### Phase 9: Frontend & Backend Integration
-- [ ] Implement typed API client (`frontend/src/services/api.ts`).
-- [ ] Connect URL analysis form to `POST /api/v1/analyze`.
-- [ ] Implement smooth loading, error states, and network fault handling.
-- [ ] Verify complete data flow from browser to API, ML, and back.
+- [x] Implement typed API client (`frontend/src/services/api.ts`).
+- [x] Connect URL analysis form to `POST /api/v1/analyze`.
+- [x] Implement smooth loading, error states, and network fault handling.
+- [x] Verify complete data flow from browser to API, ML, and back.
 
 ### Phase 10: Security Hardening & Edge Cases
-- [ ] Implement request rate-limiting / size limiting.
-- [ ] Guard against hostile ReDoS (Regular Expression Denial of Service).
-- [ ] Test extreme URL lengths (e.g., >2048 chars) and illegal Unicode characters.
-- [ ] Verify complete absence of external network calls during URL parsing.
+- [x] Implement request rate-limiting / size limiting (64KB payload boundary).
+- [x] Guard against hostile ReDoS (Regular Expression Denial of Service).
+- [x] Test extreme URL lengths (e.g., >2048 chars) and illegal Unicode characters.
+- [x] Verify complete absence of external network calls during URL parsing.
 
 ### Phase 11: Comprehensive Automated Testing
 - [ ] Backend test suite with Pytest covering all modules and edge cases.

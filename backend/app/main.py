@@ -17,9 +17,12 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     # Attempt to load ML model in memory at startup
     try:
-        from backend.app.ml.model_loader import model_loader
-        model_loader.load_model()
-        logger.info("Machine learning model initialized successfully.")
+        from backend.app.ml.model_loader import get_model_loader
+        loader = get_model_loader()
+        if loader.is_loaded:
+            logger.info("Machine learning model initialized successfully.")
+        else:
+            logger.warning("ML model could not be loaded on startup. Heuristic engine active.")
     except Exception as exc:
         logger.warning("ML model could not be loaded on startup (%s). Heuristic engine active.", str(exc))
 
@@ -37,6 +40,21 @@ app = FastAPI(
     openapi_url="/openapi.json",
     lifespan=lifespan,
 )
+
+# Request Size Limit Middleware (Anti-DoS / Payload Limit: 64 KB)
+MAX_REQUEST_BYTES = 64 * 1024
+
+
+@app.middleware("http")
+async def limit_request_size_middleware(request: Request, call_next):
+    content_length = request.headers.get("content-length")
+    if content_length and int(content_length) > MAX_REQUEST_BYTES:
+        return JSONResponse(
+            status_code=status.HTTP_413_CONTENT_TOO_LARGE,
+            content={"detail": "Payload too large. LinkShield limits requests to 64KB."},
+        )
+    return await call_next(request)
+
 
 # CORS Middleware configuration
 app.add_middleware(
