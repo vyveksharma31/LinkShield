@@ -1,180 +1,132 @@
-import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { UrlForm } from './components/UrlForm';
-import { VerdictCard } from './components/VerdictCard';
-import { ThreatIndicators } from './components/ThreatIndicators';
-import { PositiveFlags } from './components/PositiveFlags';
-import { FeaturesGrid } from './components/FeaturesGrid';
-import { RecommendationsList } from './components/RecommendationsList';
-import { HistoryDrawer } from './components/HistoryDrawer';
-import { analyzeUrl, checkApiHealth } from './services/api';
-import { AnalysisResponse, HealthResponse, ScanHistoryItem } from './types';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Navbar, NavTab } from './components/Navbar';
+import { Footer } from './components/Footer';
+import { Shield } from 'lucide-react';
 import './styles/cyber.css';
 
-const HISTORY_STORAGE_KEY = 'linkshield_scan_history_v1';
+// Lazy load page components to optimize bundle performance and guarantee zero UI lag
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ScannerPage = lazy(() => import('./pages/ScannerPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+
+// Tactical loading indicator for seamless suspense transitions
+const TacticalLoader: React.FC = () => (
+  <div
+    style={{
+      minHeight: '60vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '1.25rem',
+    }}
+  >
+    <div
+      style={{
+        position: 'relative',
+        width: '64px',
+        height: '64px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '50%',
+          border: '2px solid rgba(16, 185, 129, 0.2)',
+          borderTopColor: 'var(--accent-emerald)',
+          animation: 'spin 1s linear infinite',
+        }}
+      />
+      <Shield size={28} color="var(--accent-emerald)" />
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <div
+        style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.875rem',
+          fontWeight: 600,
+          color: 'var(--text-primary)',
+          letterSpacing: '0.05em',
+        }}
+      >
+        LOADING MODULE...
+      </div>
+      <div
+        style={{
+          fontSize: '0.75rem',
+          color: 'var(--text-muted)',
+          marginTop: '0.25rem',
+        }}
+      >
+        Lazy streaming static forensic assets
+      </div>
+    </div>
+  </div>
+);
 
 export const App: React.FC = () => {
-  const [url, setUrl] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<AnalysisResponse | null>(null);
-  const [health, setHealth] = useState<HealthResponse | null>(null);
-  const [healthLoading, setHealthLoading] = useState<boolean>(true);
-  const [history, setHistory] = useState<ScanHistoryItem[]>([]);
+  const [activeTab, setActiveTab] = useState<NavTab>('home');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-  // 1. Initial Health Check & History Load
+  // Initialize theme from localStorage or default to requested 'light' mode
   useEffect(() => {
-    async function loadHealth() {
-      try {
-        const data = await checkApiHealth();
-        setHealth(data);
-      } catch (e) {
-        setHealth(null);
-      } finally {
-        setHealthLoading(false);
-      }
+    const savedTheme = localStorage.getItem('linkshield_theme') as 'light' | 'dark' | null;
+    const initialTheme = savedTheme || 'light';
+    setTheme(initialTheme);
+
+    if (initialTheme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
     }
-
-    loadHealth();
-    const intervalId = setInterval(loadHealth, 30000);
-
-    try {
-      const stored = localStorage.getItem(HISTORY_STORAGE_KEY);
-      if (stored) {
-        setHistory(JSON.parse(stored));
-      }
-    } catch {
-      // Ignore storage read error
-    }
-
-    return () => clearInterval(intervalId);
   }, []);
 
-  // 2. Handle URL Submission
-  const handleAnalyze = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const targetUrl = url.trim();
-    if (!targetUrl) return;
+  const toggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+    localStorage.setItem('linkshield_theme', nextTheme);
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await analyzeUrl(targetUrl);
-      setResult(response);
-
-      // Append to history
-      const historyItem: ScanHistoryItem = {
-        id: `${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-        url: targetUrl,
-        verdict: response.verdict,
-        risk_score: response.risk_score,
-        timestamp: new Date().toISOString(),
-      };
-
-      setHistory((prev) => {
-        const filtered = prev.filter((item) => item.url !== targetUrl);
-        const updated = [historyItem, ...filtered].slice(0, 10);
-        try {
-          localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(updated));
-        } catch {
-          // Ignore storage write error
-        }
-        return updated;
-      });
-    } catch (err: any) {
-      setError(err.message || 'An unexpected analysis error occurred.');
-    } finally {
-      setLoading(false);
+    if (nextTheme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
     }
   };
 
-  const handleSelectHistory = (selectedUrl: string) => {
-    setUrl(selectedUrl);
-  };
-
-  const handleClearHistory = () => {
-    setHistory([]);
-    try {
-      localStorage.removeItem(HISTORY_STORAGE_KEY);
-    } catch {
-      // Ignore storage error
-    }
+  const handleTabChange = (tab: NavTab) => {
+    setActiveTab(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="app-container">
-      <Header health={health} healthLoading={healthLoading} />
-
-      <UrlForm
-        url={url}
-        setUrl={setUrl}
-        onSubmit={handleAnalyze}
-        loading={loading}
-        error={error}
+    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Global Navigation Bar */}
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={handleTabChange}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
 
-      <HistoryDrawer
-        history={history}
-        onSelect={handleSelectHistory}
-        onClear={handleClearHistory}
-      />
+      {/* Main Page Body with Lazy Loading Suspense */}
+      <main className="app-container" style={{ flex: '1 0 auto', width: '100%' }}>
+        <Suspense fallback={<TacticalLoader />}>
+          {activeTab === 'home' && (
+            <HomePage onLaunchScanner={() => handleTabChange('scanner')} />
+          )}
+          {activeTab === 'scanner' && <ScannerPage />}
+          {activeTab === 'about' && (
+            <AboutPage onLaunchScanner={() => handleTabChange('scanner')} />
+          )}
+        </Suspense>
+      </main>
 
-      {loading && (
-        <div className="cyber-card scanning-state">
-          <div className="radar-sweep-box" />
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-              Executing Defensive Static Dissection...
-            </div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.25rem', fontFamily: 'var(--font-mono)' }}>
-              Extracting 30 lexical metrics, evaluating threat heuristics, and calculating ML score
-            </div>
-          </div>
-        </div>
-      )}
-
-      {result && !loading && (
-        <>
-          <div className="assessment-grid">
-            <VerdictCard data={result} />
-
-            <div className="findings-panel">
-              <div className="cyber-card" style={{ padding: '1.5rem' }}>
-                <div className="panel-header-bar" style={{ marginBottom: '1rem' }}>
-                  <div className="panel-title">
-                    <span>Forensic Threat Indicators</span>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                      ({result.heuristic_flags.length} Flagged)
-                    </span>
-                  </div>
-                </div>
-
-                <ThreatIndicators flags={result.heuristic_flags} />
-              </div>
-
-              {result.positive_flags.length > 0 && (
-                <div className="cyber-card" style={{ padding: '1.5rem' }}>
-                  <div className="panel-header-bar" style={{ marginBottom: '1rem' }}>
-                    <div className="panel-title">
-                      <span>Positive Security Factors</span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', fontFamily: 'var(--font-mono)' }}>
-                        ({result.positive_flags.length} Verified)
-                      </span>
-                    </div>
-                  </div>
-
-                  <PositiveFlags flags={result.positive_flags} />
-                </div>
-              )}
-
-              <RecommendationsList recommendations={result.recommendations} />
-            </div>
-          </div>
-
-          <FeaturesGrid features={result.features} />
-        </>
-      )}
+      {/* Global Footer */}
+      <Footer setActiveTab={handleTabChange} />
     </div>
   );
 };
