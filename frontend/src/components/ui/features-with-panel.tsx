@@ -55,29 +55,29 @@ function FeatureMedia({
 
 const items: FeatureItem[] = [
   {
-    title: "Zero-SSRF Defensive Static Analysis",
-    alt: "LinkShield evaluates structural syntax and protocol semantics safely without making outbound web requests.",
+    title: "Zero Hallucinations: 100% Mathematical Proof",
+    alt: "LLMs guess word probabilities and fabricate WHOIS data. LinkShield computes exact Shannon entropy and deterministic RFC 3986 rules.",
     content: "https://cdn.21st.dev/assets/mirror/8c/8c4e18b6cde77ac53f3fa40ce7146594c03dd5fd0ebbd2adc9de141804a4d845.webm",
   },
   {
-    title: "30-Dimensional Lexical & Entropy Matrix",
-    alt: "Shannon entropy calculations, symbol ratios, and path tokens statically characterize URL structure in sub-15ms.",
+    title: "Sub-15ms Inline Latency vs 3-Second LLMs",
+    alt: "Evaluates thousands of URLs per second directly in memory. Fast enough for inline email gateways, reverse proxies, and CI/CD pipelines.",
     content: "https://cdn.21st.dev/assets/mirror/25/25228e9cefa50f9db3c28b77375e51fb15fc5975d98a6fbe23dbeeb9e068395d.webm",
   },
   {
-    title: "Deterministic Brand Impersonation Forensics",
-    alt: "High-value financial and tech brand tokens detected inside subdomains or paths when domains are untrusted.",
+    title: "Zero-SSRF Safety: Never Touches The Target",
+    alt: "Chatbots and web scrapers crawl attacker URLs, leaking your IP or downloading exploits. LinkShield never makes an outbound socket call.",
     content:
       "https://cdn.21st.dev/assets/localized/bd5e2be5d76b2e4f1612e70510357cf6865869dfed81859c4fd7b597ca38b9a6.png",
   },
   {
-    title: "Calibrated Random Forest Inference",
-    alt: "Machine learning classifier trained on balanced benchmarks with statistical confidence scoring and fail-soft fallback.",
+    title: "Punycode & Homoglyph Spoof Decoding",
+    alt: "Adversaries use Cyrillic and Greek characters (like 'а' in pаypal) that fool LLM tokenizers. LinkShield mathematically resolves Punycode to ASCII.",
     content: "https://cdn.21st.dev/assets/mirror/16/167a5626e0c8f3aa59c25b5dc3324a2d0178bbec206084a4375f5363e29ade5f.webm",
   },
   {
-    title: "Actionable SOC Defense Guidance",
-    alt: "Transparent explainability with concrete evidence strings and defense guidance tailored for SOC analysts.",
+    title: "Verifiable Evidence & Calibrated ML Scores",
+    alt: "Outputs concrete heuristic rule IDs, lexical parameters, and calibrated Random Forest probabilities ready for SOC SIEM tickets.",
     content: "https://cdn.21st.dev/assets/mirror/6e/6eae938226ca5a8c25295b2f1a8cfee3d7e96db1445e63bdc7eff68309f95036.webm",
   },
 ];
@@ -86,19 +86,19 @@ export default function FeaturesWithPanel() {
   const [active, setActive] = React.useState(0);
 
   return (
-    <section className="relative w-full py-16 lg:py-20">
+    <section className="relative w-full py-12 lg:py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-14 lg:items-start">
           {/* Left Column: Titles & Accordion */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-4">
-              DEFENSE-IN-DEPTH
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3">
+              DETERMINISTIC FORENSICS VS GENERIC AI
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl mb-4">
-              Core Detection Capabilities.
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl mb-3">
+              Why LinkShield Beats AI Tools.
             </h2>
-            <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-lg leading-relaxed">
-              Explore how LinkShield combines static mathematics, forensic domain heuristics, and machine learning into an explainable threat assessment platform.
+            <p className="text-muted-foreground text-sm md:text-base mb-6 max-w-lg leading-relaxed">
+              Generic LLMs hallucinate when evaluating URLs. LinkShield uses mathematical formulas and zero-outbound static analysis to deliver verifiable results in milliseconds.
             </p>
 
             <ul className="flex flex-col gap-1.5">
@@ -115,7 +115,7 @@ export default function FeaturesWithPanel() {
                   }}
                   onClick={() => setActive(index)}
                   className={cn(
-                    "flex flex-col px-4 py-3.5 rounded-xl cursor-pointer transition-all duration-200 lg:flex-row lg:items-center lg:gap-4",
+                    "flex flex-col px-4 py-3 rounded-xl cursor-pointer transition-all duration-200 lg:flex-row lg:items-center lg:gap-4",
                     active === index
                       ? "ring-1 ring-foreground bg-muted/40 shadow-xs"
                       : "ring-1 ring-transparent hover:bg-muted/20",
@@ -175,8 +175,8 @@ export default function FeaturesWithPanel() {
           {/* Right Column: Sticky Media Panel */}
           <div className="hidden lg:block sticky top-20">
             <Card
-              className="relative w-full overflow-hidden p-0 gap-0 rounded-2xl border shadow-lg bg-muted/20"
-              style={{ aspectRatio: "4/3", maxHeight: "420px" }}
+              className="relative w-full overflow-hidden p-0 gap-0 rounded-2xl border shadow-md bg-muted/20"
+              style={{ aspectRatio: "4/3", maxHeight: "380px" }}
             >
               <AnimatePresence mode="wait">
                 <motion.div
