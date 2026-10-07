@@ -47,7 +47,7 @@ function FeatureMedia({
   }
 
   return (
-    <div className="flex items-center justify-center w-full h-full p-8">
+    <div className="flex items-center justify-center w-full h-full p-8 text-center">
       <p className="text-sm text-muted-foreground leading-relaxed">{content}</p>
     </div>
   );
@@ -86,21 +86,22 @@ export default function FeaturesWithPanel() {
   const [active, setActive] = React.useState(0);
 
   return (
-    <section className="relative w-full py-16">
+    <section className="relative w-full py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 lg:items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-14 lg:items-start">
+          {/* Left Column: Titles & Accordion */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-4">
               DEFENSE-IN-DEPTH
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl mb-4">
               Core Detection Capabilities.
             </h2>
-            <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-lg">
+            <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-lg leading-relaxed">
               Explore how LinkShield combines static mathematics, forensic domain heuristics, and machine learning into an explainable threat assessment platform.
             </p>
 
-            <ul className="flex flex-col gap-1">
+            <ul className="flex flex-col gap-1.5">
               {items.map((item, index) => (
                 <motion.li
                   key={index}
@@ -109,15 +110,15 @@ export default function FeaturesWithPanel() {
                   viewport={{ once: true }}
                   transition={{
                     duration: 0.35,
-                    delay: index * 0.07,
+                    delay: index * 0.05,
                     ease: "easeOut",
                   }}
                   onClick={() => setActive(index)}
                   className={cn(
                     "flex flex-col px-4 py-3.5 rounded-xl cursor-pointer transition-all duration-200 lg:flex-row lg:items-center lg:gap-4",
                     active === index
-                      ? "ring-1 ring-foreground bg-muted/30"
-                      : "ring-1 ring-transparent hover:bg-muted/10",
+                      ? "ring-1 ring-foreground bg-muted/40 shadow-xs"
+                      : "ring-1 ring-transparent hover:bg-muted/20",
                   )}
                 >
                   <div className="flex flex-row items-center gap-4 w-full lg:contents">
@@ -125,7 +126,7 @@ export default function FeaturesWithPanel() {
                       className={cn(
                         "size-7 rounded-full flex items-center justify-center text-xs font-medium shrink-0 transition-colors duration-200",
                         active === index
-                          ? "bg-foreground text-background"
+                          ? "bg-foreground text-background font-bold"
                           : "bg-muted text-muted-foreground",
                       )}
                     >
@@ -152,7 +153,10 @@ export default function FeaturesWithPanel() {
                         transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                         className="w-full overflow-hidden lg:hidden"
                       >
-                        <Card className="w-full mt-3 overflow-hidden p-0 gap-0 aspect-4/3 relative">
+                        <Card
+                          className="w-full mt-3 overflow-hidden p-0 gap-0 relative rounded-xl border"
+                          style={{ aspectRatio: "4/3" }}
+                        >
                           <div className="absolute inset-0">
                             <FeatureMedia
                               content={item.content}
@@ -168,15 +172,19 @@ export default function FeaturesWithPanel() {
             </ul>
           </div>
 
-          <div className="hidden lg:block sticky top-24">
-            <Card className="relative w-full aspect-4/3 overflow-hidden p-0 gap-0 border-border shadow-xl">
+          {/* Right Column: Sticky Media Panel */}
+          <div className="hidden lg:block sticky top-20">
+            <Card
+              className="relative w-full overflow-hidden p-0 gap-0 rounded-2xl border shadow-lg bg-muted/20"
+              style={{ aspectRatio: "4/3", maxHeight: "420px" }}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
-                  initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   className="absolute inset-0"
                 >
                   <FeatureMedia
@@ -186,11 +194,6 @@ export default function FeaturesWithPanel() {
                 </motion.div>
               </AnimatePresence>
             </Card>
-            <div className="mt-4 p-4 rounded-xl bg-card border border-border">
-              <p className="text-xs font-mono text-emerald-400 mb-1">CAPABILITY 0{active + 1}</p>
-              <h4 className="text-sm font-semibold text-foreground mb-1">{items[active].title}</h4>
-              <p className="text-xs text-muted-foreground">{items[active].alt}</p>
-            </div>
           </div>
         </div>
       </div>

@@ -24,8 +24,8 @@ const TacticalLoader: React.FC = () => (
     <div
       style={{
         position: 'relative',
-        width: '64px',
-        height: '64px',
+        width: '56px',
+        height: '56px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -38,16 +38,16 @@ const TacticalLoader: React.FC = () => (
           borderRadius: '50%',
           border: '2px solid rgba(16, 185, 129, 0.2)',
           borderTopColor: 'var(--accent-emerald)',
-          animation: 'spin 1s linear infinite',
+          animation: 'spin 0.8s linear infinite',
         }}
       />
-      <Shield size={28} color="var(--accent-emerald)" />
+      <Shield size={24} color="var(--accent-emerald)" />
     </div>
     <div style={{ textAlign: 'center' }}>
       <div
         style={{
           fontFamily: 'var(--font-mono)',
-          fontSize: '0.875rem',
+          fontSize: '0.85rem',
           fontWeight: 600,
           color: 'var(--text-primary)',
           letterSpacing: '0.05em',
@@ -62,7 +62,7 @@ const TacticalLoader: React.FC = () => (
           marginTop: '0.25rem',
         }}
       >
-        Lazy streaming static forensic assets
+        Streaming static forensic assets
       </div>
     </div>
   </div>
@@ -78,10 +78,12 @@ export const App: React.FC = () => {
     const initialTheme = savedTheme || 'light';
     setTheme(initialTheme);
 
-    if (initialTheme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
+    if (initialTheme === 'dark') {
+      document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 
@@ -90,10 +92,12 @@ export const App: React.FC = () => {
     setTheme(nextTheme);
     localStorage.setItem('linkshield_theme', nextTheme);
 
-    if (nextTheme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
+    if (nextTheme === 'dark') {
+      document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
     }
   };
 
@@ -104,7 +108,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Global Navigation Bar */}
+      {/* Slim Global Navigation Bar */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={handleTabChange}
@@ -112,8 +116,8 @@ export const App: React.FC = () => {
         toggleTheme={toggleTheme}
       />
 
-      {/* Main Page Body with Lazy Loading Suspense */}
-      <main className="app-container" style={{ flex: '1 0 auto', width: '100%' }}>
+      {/* Main Page Body with Zero-Lag Lazy Loading */}
+      <main style={{ flex: '1 0 auto', width: '100%' }}>
         <Suspense fallback={<TacticalLoader />}>
           {activeTab === 'home' && (
             <HomePage onLaunchScanner={() => handleTabChange('scanner')} />
@@ -125,7 +129,7 @@ export const App: React.FC = () => {
         </Suspense>
       </main>
 
-      {/* Global Footer */}
+      {/* Minimal Footer */}
       <Footer setActiveTab={handleTabChange} />
     </div>
   );

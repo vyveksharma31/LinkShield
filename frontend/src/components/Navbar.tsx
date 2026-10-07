@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Moon, Sun, Terminal, Info, Home, ArrowRight } from 'lucide-react';
+import { Moon, Sun, ArrowRight } from 'lucide-react';
 
 export type NavTab = 'home' | 'scanner' | 'about';
 
@@ -17,83 +17,71 @@ export const Navbar: React.FC<NavbarProps> = ({
   toggleTheme,
 }) => {
   return (
-    <header className="main-navbar">
-      <div className="navbar-inner">
-        {/* Brand Logo & Name */}
+    <header className="slim-navbar">
+      <div className="slim-navbar-inner">
+        {/* Brand: Minimalist typography matching 21st.dev aesthetic */}
         <div
-          className="brand-logo"
+          className="brand-minimal"
           onClick={() => setActiveTab('home')}
-          style={{ cursor: 'pointer' }}
           role="button"
           tabIndex={0}
-          aria-label="LinkShield Home"
         >
-          <div className="logo-icon-box">
-            <Shield size={20} className="logo-shield-icon" />
-          </div>
-          <div className="brand-text">
-            <span className="brand-name">
-              LINK<span className="brand-name-accent">SHIELD</span>
-            </span>
-            <span className="brand-tagline">FORENSIC ENGINE</span>
-          </div>
+          <span>linkshield</span>
+          <span className="brand-dot">.</span>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation Tabs */}
         <nav aria-label="Main Navigation">
-          <ul className="nav-links">
+          <ul className="slim-nav-links">
             <li>
               <button
                 type="button"
-                className={`nav-link-btn ${activeTab === 'home' ? 'active' : ''}`}
+                className={`slim-nav-btn ${activeTab === 'home' ? 'active' : ''}`}
                 onClick={() => setActiveTab('home')}
               >
-                <Home size={15} />
-                <span>Home</span>
+                Home
               </button>
             </li>
             <li>
               <button
                 type="button"
-                className={`nav-link-btn ${activeTab === 'scanner' ? 'active' : ''}`}
+                className={`slim-nav-btn ${activeTab === 'scanner' ? 'active' : ''}`}
                 onClick={() => setActiveTab('scanner')}
               >
-                <Terminal size={15} />
-                <span>Scanner Tool</span>
+                Scanner Tool
               </button>
             </li>
             <li>
               <button
                 type="button"
-                className={`nav-link-btn ${activeTab === 'about' ? 'active' : ''}`}
+                className={`slim-nav-btn ${activeTab === 'about' ? 'active' : ''}`}
                 onClick={() => setActiveTab('about')}
               >
-                <Info size={15} />
-                <span>About Us</span>
+                About Us
               </button>
             </li>
           </ul>
         </nav>
 
-        {/* Right Actions: Theme Toggle + Launch Scanner CTA */}
-        <div className="nav-right-actions">
+        {/* Right Side Actions: Compact Theme Toggle + Launch Scanner */}
+        <div className="slim-nav-right">
           <button
             type="button"
-            className="theme-toggle-btn"
+            className="theme-toggle-minimal"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
           </button>
 
           <button
             type="button"
-            className="nav-cta-btn"
+            className="nav-cta-minimal"
             onClick={() => setActiveTab('scanner')}
           >
             <span>Launch Scanner</span>
-            <ArrowRight size={14} />
+            <ArrowRight size={13} />
           </button>
         </div>
       </div>

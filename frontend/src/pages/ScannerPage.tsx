@@ -102,7 +102,7 @@ export const ScannerPage: React.FC = () => {
   };
 
   return (
-    <div className="scanner-page-container">
+    <div className="scanner-container">
       <Header health={health} healthLoading={healthLoading} />
 
       <UrlForm

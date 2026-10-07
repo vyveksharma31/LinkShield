@@ -7,7 +7,6 @@ import {
   Zap,
   CheckCircle2,
   Code2,
-  Users,
   ShieldAlert,
   ArrowRight,
   FileCode2,
@@ -20,49 +19,47 @@ interface AboutPageProps {
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onLaunchScanner }) => {
   return (
-    <div className="about-page-wrapper" style={{ padding: '2rem 0 5rem' }}>
-      {/* Hero Header */}
-      <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 4rem' }}>
-        <div className="section-tag" style={{ margin: '0 auto 1.25rem' }}>
-          <Shield size={14} />
+    <div className="about-container">
+      {/* Header */}
+      <div className="about-header">
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.25rem 0.75rem', borderRadius: '9999px', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', fontWeight: 600, background: 'var(--accent-emerald-subtle)', color: 'var(--accent-emerald)', border: '1px solid var(--border-glow)', marginBottom: '1rem' }}>
+          <Shield size={13} />
           <span>ABOUT LINKSHIELD</span>
         </div>
-        <h1 className="section-title" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}>
-          High-Assurance Static URL Threat Intelligence
-        </h1>
-        <p className="section-desc" style={{ margin: '0 auto', fontSize: '1.1rem' }}>
+        <h1>High-Assurance Static URL Threat Intelligence</h1>
+        <p>
           Built on zero-trust principles, LinkShield provides mathematical, transparent, and instant lexical forensics to protect organizations without the vulnerabilities of web scrapers or the hallucinations of AI chatbots.
         </p>
       </div>
 
-      {/* Grid: Core Philosophy & Architecture */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '4.5rem' }}>
-        <div className="cyber-card" style={{ padding: '2rem' }}>
-          <div className="audience-icon-box" style={{ marginBottom: '1.25rem' }}>
-            <Lock size={24} />
+      {/* 2-Column Core Architecture Cards */}
+      <div className="about-grid-2">
+        <div className="clean-card">
+          <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'var(--accent-emerald-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-emerald)', marginBottom: '1rem' }}>
+            <Lock size={20} />
           </div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
             The Zero-SSRF Philosophy
           </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-            Most traditional URL scanners launch headless browsers or curl commands to crawl destinations. This exposes the scanner to Server-Side Request Forgery (SSRF), triggers canary tokens, alerts attackers that their phishing campaign is being analyzed, and risks browser exploit delivery.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
+            Traditional URL crawlers launch headless browsers or curl commands to fetch remote targets. This exposes the scanner to Server-Side Request Forgery (SSRF), triggers attacker tracking pixels, and risks payload execution.
           </p>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, marginTop: '0.75rem' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: '0.5rem' }}>
             LinkShield operates under a strict <strong>Zero Outbound Network</strong> invariant. Every computation is performed in-memory on the URL string itself.
           </p>
         </div>
 
-        <div className="cyber-card" style={{ padding: '2rem' }}>
-          <div className="audience-icon-box" style={{ marginBottom: '1.25rem' }}>
-            <Cpu size={24} />
+        <div className="clean-card">
+          <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'var(--accent-emerald-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-emerald)', marginBottom: '1rem' }}>
+            <Cpu size={20} />
           </div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
             4-Layer Dissection Pipeline
           </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
             LinkShield executes an integrated defense-in-depth pipeline:
           </p>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.75rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.75rem', fontSize: '0.825rem', color: 'var(--text-secondary)' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ color: 'var(--accent-emerald)', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>01</span>
               <span><strong>RFC 3986 Lexical Parsing:</strong> Punycode & percent-encoding resolution.</span>
@@ -83,155 +80,126 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onLaunchScanner }) => {
         </div>
       </div>
 
-      {/* Section: Who Can Use It */}
-      <section className="landing-section" style={{ padding: '2rem 0 4rem' }}>
-        <div className="section-tag">
-          <Users size={14} />
-          <span>Intended Users & Workflows</span>
-        </div>
-        <h2 className="section-title">Built for Modern Security Operators & Developers</h2>
-        <p className="section-desc">
-          Designed from the ground up to integrate seamlessly into diverse security workflows.
+      {/* Why Deterministic Beats Generative AI */}
+      <div style={{ marginBottom: '3.5rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+          Why Deterministic Forensics Beats Generative AI for URLs
+        </h2>
+        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+          Large Language Models are probabilistic token decoders. They cannot reliably compute Shannon entropy, detect exact Punycode byte-mappings, or guarantee zero network calls.
         </p>
 
-        <div className="audience-grid">
-          <div className="audience-card">
-            <div className="audience-icon-box">
-              <Terminal size={24} />
-            </div>
-            <h3>SOC Analysts & CSIRTs</h3>
-            <p>
-              When an employee reports a suspicious email, SOC analysts need instant answers. LinkShield breaks down the URL’s subdomain depth, flags target brand spoofs (e.g., PayPal or Microsoft tokens in untrusted domains), and calculates Shannon entropy in milliseconds.
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+          <div className="clean-card">
+            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <CheckCircle2 size={16} /> Zero Hallucinations
+            </h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              LLMs guess the next word based on token associations, often fabricating fake WHOIS data or missing subtle typosquats. LinkShield uses mathematical formulas that guarantee 100% reproducible results.
             </p>
           </div>
 
-          <div className="audience-card">
-            <div className="audience-icon-box">
-              <Code2 size={24} />
-            </div>
-            <h3>DevSecOps & Platform Engineers</h3>
-            <p>
-              Integrate LinkShield into high-velocity CI/CD workflows, reverse proxies, and mail transfer agents (MTAs). With an execution latency under 15ms, LinkShield acts as a first-line static firewall preventing phishing links from entering enterprise chat systems.
+          <div className="clean-card">
+            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Zap size={16} /> Sub-15ms Latency
+            </h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              Waiting 3 to 10 seconds for an LLM to generate conversational prose makes inline email filtering or reverse-proxy inspection impossible. LinkShield evaluates every metric in-memory in under 15 milliseconds.
             </p>
           </div>
 
-          <div className="audience-card">
-            <div className="audience-icon-box">
-              <ShieldAlert size={24} />
-            </div>
-            <h3>Incident Responders & Researchers</h3>
-            <p>
-              During active incident investigations, responders can safely audit batches of URLs extracted from memory dumps, malicious macros, or command lines without tipping off threat actors or leaking client data.
+          <div className="clean-card">
+            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Lock size={16} /> Complete Confidentiality
+            </h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              Pasting sensitive internal corporate URLs, password reset links, or customer endpoints into public LLM clouds leaks data. LinkShield runs completely isolated on your own infrastructure.
+            </p>
+          </div>
+
+          <div className="clean-card">
+            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Sparkles size={16} /> Homoglyph Math
+            </h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              Adversaries frequently use Cyrillic or Greek homoglyphs to deceive human eyes and LLM tokenizers. LinkShield mathematically decodes Punycode into ASCII codepoints and flags visually confusable characters.
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Section: Why Different & More Useful Than AI */}
-      <section className="landing-section" style={{ padding: '2rem 0 4rem' }}>
-        <div className="section-tag">
-          <Zap size={14} />
-          <span>Deterministic vs Generative</span>
-        </div>
-        <h2 className="section-title">Why Deterministic Forensics Beats Generative AI for URLs</h2>
-        <p className="section-desc">
-          Generic AI tools (LLMs) are revolutionary for text synthesis, but they are intrinsically ill-suited for critical cybersecurity URL evaluation.
-        </p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
-          <div className="cyber-card" style={{ padding: '1.75rem' }}>
-            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={18} /> Determinism vs Hallucination
-            </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
-              LLMs guess the next token based on word associations. When asked if a URL is malicious, they often hallucinate fake WHOIS data or miss subtle typosquats. LinkShield uses mathematical formulas and verifiable rulebooks that guarantee 100% reproducible results.
+      {/* Target Audiences */}
+      <div style={{ marginBottom: '3.5rem' }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
+          Who Can Use LinkShield?
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+          <div className="clean-card">
+            <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><Terminal size={20} /></div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>SOC Analysts</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              Triage reported phishing campaigns instantly without triggering attacker beacons, with full evidence strings for SIEM tickets.
             </p>
           </div>
 
-          <div className="cyber-card" style={{ padding: '1.75rem' }}>
-            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Zap size={18} /> Sub-15ms vs 3000ms+ Latency
-            </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
-              Waiting 3 to 10 seconds for an LLM to generate conversational prose makes inline email filtering or high-volume proxy inspection impossible. LinkShield evaluates every metric in-memory in under 15 milliseconds.
+          <div className="clean-card">
+            <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><Code2 size={20} /></div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>Developers & AppSec</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              Integrate LinkShield into high-velocity CI/CD workflows, reverse proxies, and mail filters with sub-15ms throughput.
             </p>
           </div>
 
-          <div className="cyber-card" style={{ padding: '1.75rem' }}>
-            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Lock size={18} /> Air-Gapped Confidentiality
-            </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
-              Pasting sensitive internal corporate URLs, password reset tokens, or customer URLs into public LLM clouds leaks proprietary data and risks compliance violations. LinkShield runs completely isolated on your own infrastructure.
-            </p>
-          </div>
-
-          <div className="cyber-card" style={{ padding: '1.75rem' }}>
-            <h4 style={{ color: 'var(--accent-emerald)', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Sparkles size={18} /> Mathematical Character Decoding
-            </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
-              Adversaries frequently use Cyrillic or Greek homoglyphs (e.g., Cyrillic 'а' in <code>pаypal.com</code>) to deceive human eyes and LLM tokenizers. LinkShield mathematically decodes Punycode into ASCII codepoints and flags visually confusable characters.
+          <div className="clean-card">
+            <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><ShieldAlert size={20} /></div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>Incident Responders</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.825rem', lineHeight: 1.55 }}>
+              Audit suspicious links extracted from malware or memory dumps without tipping off adversaries or leaking client data.
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Section: Technical Stack & Attribution */}
-      <section className="cyber-card" style={{ padding: '2.5rem', marginTop: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-          <FileCode2 size={24} color="var(--accent-emerald)" />
-          <h3 style={{ fontSize: '1.35rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+      {/* Technical Stack Attribution */}
+      <div className="clean-card" style={{ marginBottom: '3rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem' }}>
+          <FileCode2 size={20} color="var(--accent-emerald)" />
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
             Engineering Standards & Technical Stack
           </h3>
         </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '850px' }}>
-          LinkShield was engineered with production-grade rigor. The backend is written in Python 3.12 utilizing FastAPI and scikit-learn, validated by an automated test suite containing 132/132 passing Pytest unit, property-based, and security regression tests. The frontend is built on modern React with TypeScript, Vite, Tailwind CSS, and Shadcn UI components.
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+          Backend in Python 3.12 (FastAPI, scikit-learn, Pydantic v2) with 132/132 passing Pytest security and regression tests. Frontend in React 18 with TypeScript, Vite, Tailwind CSS, Motion, and Shadcn UI components.
         </p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1.75rem' }}>
-          <div style={{ padding: '1rem', background: 'var(--bg-tertiary)', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-            <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>BACKEND ENGINE</div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginTop: '0.25rem' }}>FastAPI + Pydantic v2</div>
-          </div>
-          <div style={{ padding: '1rem', background: 'var(--bg-tertiary)', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-            <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>MACHINE LEARNING</div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginTop: '0.25rem' }}>Calibrated Random Forest</div>
-          </div>
-          <div style={{ padding: '1rem', background: 'var(--bg-tertiary)', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-            <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>FRONTEND INTERFACE</div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginTop: '0.25rem' }}>React 18 + TypeScript + Vite</div>
-          </div>
-          <div style={{ padding: '1rem', background: 'var(--bg-tertiary)', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-            <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>AUTHOR & ARCHITECT</div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--accent-emerald)', marginTop: '0.25rem' }}>Vyvek Sharma</div>
-          </div>
+        <div style={{ marginTop: '1rem', display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.8rem', fontFamily: 'var(--font-mono)' }}>
+          <div>Engine: <span style={{ color: 'var(--accent-emerald)' }}>FastAPI + ML</span></div>
+          <div>Architecture: <span style={{ color: 'var(--accent-emerald)' }}>Zero-SSRF Static</span></div>
+          <div>Author: <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Vyvek Sharma</span></div>
         </div>
-      </section>
+      </div>
 
-      {/* Bottom CTA Banner */}
-      <div style={{ marginTop: '4rem', textAlign: 'center' }}>
+      {/* Launch CTA */}
+      <div style={{ textAlign: 'center' }}>
         <button
           type="button"
           onClick={onLaunchScanner}
-          className="action-btn-primary"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.6rem',
-            padding: '0.85rem 2.25rem',
-            fontSize: '1rem',
-            background: 'linear-gradient(135deg, var(--accent-emerald), #047857)',
+            gap: '0.5rem',
+            padding: '0.75rem 1.85rem',
+            fontSize: '0.9rem',
+            fontWeight: 600,
+            background: 'var(--accent-emerald-dark)',
             color: '#fff',
             border: 'none',
-            borderRadius: '10px',
-            fontWeight: 600,
+            borderRadius: '9px',
             cursor: 'pointer',
-            boxShadow: 'var(--glow-emerald)',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
           <span>Open LinkShield Scanner</span>
-          <ArrowRight size={18} />
+          <ArrowRight size={15} />
         </button>
       </div>
     </div>
